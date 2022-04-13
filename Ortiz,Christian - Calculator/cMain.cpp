@@ -262,6 +262,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 		operatorID = negative;
 		GetInputValue();
+		CalculateEquation();
 		break;
 	}
 #pragma endregion
@@ -301,7 +302,7 @@ void cMain::CalculateEquation()
 		calcAnswer = calcValues[0] / calcValues[1];
 		calcValues.clear();
 		*outputTxt << calcAnswer;
-		calcValues.push_back(calcAnswer);
+		//calcValues.push_back(calcAnswer);
 		break;
 	}
 	// Mult
@@ -342,7 +343,9 @@ void cMain::CalculateEquation()
 	// Negate
 	case negative:
 	{
-
+		calcAnswer = calcValues[0] * -1;
+		calcValues.clear();
+		*outputTxt << calcAnswer;
 		break;
 	}
 	default:
