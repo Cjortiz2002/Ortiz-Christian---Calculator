@@ -4,12 +4,13 @@ EVT_BUTTON(wxID_ANY, OnButtonClicked)
 wxEND_EVENT_TABLE()
 enum IDS
 {
-	zero, one, two, three, four, five, six, seven, eight, nine, binary, hex, decimal, divide, mult, subtract, add, equals, mod, negative
+	zero, one, two, three, four, five, six, seven, eight, nine, binary, hex, decimal, divide, mult, subtract, add, equals, mod, negative, clear
 };
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), wxSize(517, 815))
 {
 
-	outputTxt = new wxTextCtrl(this, 101, "", wxPoint(0, 0), wxSize(500, 275), wxTE_RIGHT);
+	outputTxt = new wxTextCtrl(this, 101, "", wxPoint(0, 0), wxSize(375, 275), wxTE_RIGHT);
+	clearBtn = new wxButton(this, 20, "CLR", wxPoint(375, 0), wxSize(125, 275));
 	wxFont font(30, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
 
 #pragma region Newing Buttons
@@ -47,6 +48,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 
 #pragma region Setting Buttons Colors/Fonts
 	// setting buttons colors
+	clearBtn->SetBackgroundColour(wxColour(33, 203, 169));
 	zeroBtn->SetBackgroundColour(wxColour(133, 19, 157));
 	oneBtn->SetBackgroundColour(wxColour(133, 19, 157));
 	twoBtn->SetBackgroundColour(wxColour(133, 19, 157));
@@ -69,6 +71,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 	equalsBtn->SetBackgroundColour(wxColour(239, 62, 91));
 
 	// Setting button fonts
+	clearBtn->SetFont(font);
 	zeroBtn->SetFont(font);
 	oneBtn->SetFont(font);
 	twoBtn->SetFont(font);
@@ -91,6 +94,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 	negativeBtn->SetFont(font);
 
 	// Setting Buttons Foreground Color
+	clearBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
 	zeroBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
 	oneBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
 	twoBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
@@ -265,6 +269,14 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 		CalculateEquation();
 		break;
 	}
+	// clear
+	case clear:
+	{
+		outputTxt->Clear();
+		calcValues.clear();
+		calcAnswer = 0;
+		break;
+	}
 #pragma endregion
 
 #pragma region Default
@@ -294,6 +306,11 @@ void cMain::GetInputValue()
 
 void cMain::CalculateEquation()
 {
+	if (calcValues.size() < 2)
+	{
+		*outputTxt << calcAnswer;
+		return;
+	}
 	switch (operatorID)
 	{
 		// Divide
@@ -327,6 +344,10 @@ void cMain::CalculateEquation()
 	case add:
 	{
 		calcAnswer = calcValues[0] + calcValues[1];
+		/*for (int i = 0; i < calcValues.size(); i++)
+		{
+			calcAnswer += calcValues[i];
+		}*/
 		calcValues.clear();
 		*outputTxt << calcAnswer;
 		break;

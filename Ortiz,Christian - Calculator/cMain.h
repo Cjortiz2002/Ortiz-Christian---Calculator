@@ -14,6 +14,7 @@ public:
 #pragma region Initialize Buttons Members
 	// create calc button members
 	wxTextCtrl* outputTxt = nullptr;
+	wxButton* clearBtn = nullptr;
 	wxButton* zeroBtn = nullptr;
 	wxButton* oneBtn = nullptr;
 	wxButton* twoBtn = nullptr;
