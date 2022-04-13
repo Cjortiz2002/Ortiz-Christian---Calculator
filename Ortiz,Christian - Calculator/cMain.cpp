@@ -1,13 +1,15 @@
 #include "cMain.h"
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
-EVT_BUTTON(101, OnButtonClicked)
+EVT_BUTTON(wxID_ANY, OnButtonClicked)
 wxEND_EVENT_TABLE()
-
+enum IDS
+{
+	zero, one, two, three, four, five, six, seven, eight, nine, binary, hex, decimal, divide, mult, subtract, add, equals, mod, negative
+};
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), wxSize(517, 815))
 {
-	wxGridSizer* grid = new wxGridSizer(gridWidth, gridHeight, 0, 0);
-	outputTxt = new wxTextCtrl(this, 101, "", wxPoint(0, 0), wxSize(500, 275), wxTE_RIGHT);
 
+	outputTxt = new wxTextCtrl(this, 101, "", wxPoint(0, 0), wxSize(500, 275), wxTE_RIGHT);
 	wxFont font(30, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
 
 #pragma region Newing Buttons
@@ -34,17 +36,14 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 	oneBtn = new wxButton(this, 1, "1", wxPoint(0, 575), wxSize(125, 100));
 	twoBtn = new wxButton(this, 2, "2", wxPoint(125, 575), wxSize(125, 100));
 	threeBtn = new wxButton(this, 3, "3", wxPoint(250, 575), wxSize(125, 100));
-	addBtn = new wxButton(this, 17, "+", wxPoint(375, 575), wxSize(125, 100));
+	addBtn = new wxButton(this, 16, "+", wxPoint(375, 575), wxSize(125, 100));
 
 	// Row 5
-	negativeBtn = new wxButton(this, 20, "(-)", wxPoint(0, 675), wxSize(125, 100));
+	negativeBtn = new wxButton(this, 19, "(-)", wxPoint(0, 675), wxSize(125, 100));
 	zeroBtn = new wxButton(this, 0, "0", wxPoint(125, 675), wxSize(125, 100));
-	modBtn = new wxButton(this, 19, "%", wxPoint(250, 675), wxSize(125, 100));
-	equalsBtn = new wxButton(this, 18, "=", wxPoint(375, 675), wxSize(125, 100));
+	modBtn = new wxButton(this, 18, "%", wxPoint(250, 675), wxSize(125, 100));
+	equalsBtn = new wxButton(this, 17, "=", wxPoint(375, 675), wxSize(125, 100));
 #pragma endregion
-
-
-
 
 #pragma region Setting Buttons Colors/Fonts
 	// setting buttons colors
@@ -67,9 +66,9 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 	addBtn->SetBackgroundColour(wxColour(0, 128, 128));
 	modBtn->SetBackgroundColour(wxColour(128, 0, 64));
 	negativeBtn->SetBackgroundColour(wxColour(128, 0, 64));
-	equalsBtn->SetBackgroundColour(wxColour(124, 118, 150));
+	equalsBtn->SetBackgroundColour(wxColour(239, 62, 91));
 
-	// setting button fonts
+	// Setting button fonts
 	zeroBtn->SetFont(font);
 	oneBtn->SetFont(font);
 	twoBtn->SetFont(font);
@@ -112,8 +111,8 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 	equalsBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
 	modBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
 	negativeBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-#pragma endregion
 
+#pragma endregion
 
 #pragma region Setting Output Text Color/Font
 	// Output Text Box Font
@@ -133,5 +132,224 @@ cMain::~cMain()
 
 void cMain::OnButtonClicked(wxCommandEvent& evt)
 {
+
+
+	switch (evt.GetId())
+	{
+
+#pragma region numbers 0-9
+		// numbers 0-9
+	case zero:
+	{
+		*outputTxt << 0;
+		break;
+	}
+	case one:
+	{
+		*outputTxt << 1;
+		break;
+	}
+	case two:
+	{
+		*outputTxt << 2;
+		break;
+	}
+	case three:
+	{
+		*outputTxt << 3;
+		break;
+	}
+	case four:
+	{
+		*outputTxt << 4;
+		break;
+	}
+	case five:
+	{
+		*outputTxt << 5;
+		break;
+	}
+	case six:
+	{
+		*outputTxt << 6;
+		break;
+	}
+	case seven:
+	{
+		*outputTxt << 7;
+		break;
+	}
+	case eight:
+	{
+		*outputTxt << 8;
+		break;
+	}
+	case nine:
+	{
+		*outputTxt << 9;
+		break;
+	}
+#pragma endregion
+
+#pragma region BIN/HEX/DEC
+	// Binary
+	case binary:
+	{
+		break;
+	}
+	// Hex
+	case hex:
+	{
+		break;
+	}
+	// Decimal
+	case decimal:
+	{
+		break;
+	}
+#pragma endregion
+
+#pragma region Operands
+	// Divide
+	case divide:
+	{
+		operatorID = divide;
+		GetInputValue();
+
+		break;
+	}
+	// Mult
+	case mult:
+	{
+		operatorID = mult;
+		GetInputValue();
+
+		break;
+	}
+	// Sub
+	case subtract:
+	{
+		operatorID = subtract;
+		GetInputValue();
+
+		break;
+	}
+	// add
+	case add:
+	{
+		operatorID = add;
+		GetInputValue();
+
+		break;
+	}
+	// Equals
+	case equals:
+	{
+		GetInputValue();
+		CalculateEquation();
+		break;
+	}
+	// Mod
+	case mod:
+	{
+		operatorID = mod;
+		GetInputValue();
+
+		break;
+	}
+	// Negate
+	case negative:
+	{
+		operatorID = negative;
+		GetInputValue();
+		break;
+	}
+#pragma endregion
+
+#pragma region Default
+	default:
+	{
+
+		outputTxt->Clear();
+		*outputTxt << "ERROR";
+		break;
+	}
+#pragma endregion
+
+	}
+
 	evt.Skip();
 }
+
+void cMain::GetInputValue()
+{
+	wxString txtValue = outputTxt->GetValue();
+	double fValue = 0;
+	txtValue.ToDouble(&fValue);
+	calcValues.push_back(fValue);
+	outputTxt->Clear();
+
+}
+
+void cMain::CalculateEquation()
+{
+	switch (operatorID)
+	{
+		// Divide
+	case divide:
+	{
+		calcAnswer = calcValues[0] / calcValues[1];
+		calcValues.clear();
+		*outputTxt << calcAnswer;
+		calcValues.push_back(calcAnswer);
+		break;
+	}
+	// Mult
+	case mult:
+	{
+
+		calcAnswer = calcValues[0] * calcValues[1];
+		calcValues.clear();
+		*outputTxt << calcAnswer;
+		break;
+	}
+	// Sub
+	case subtract:
+	{
+
+		calcAnswer = calcValues[0] - calcValues[1];
+		calcValues.clear();
+		*outputTxt << calcAnswer;
+		break;
+	}
+	// add
+	case add:
+	{
+		calcAnswer = calcValues[0] + calcValues[1];
+		calcValues.clear();
+		*outputTxt << calcAnswer;
+		break;
+	}
+	// Mod
+	case mod:
+	{
+
+		calcAnswer = fmod(calcValues[0], calcValues[1]);
+		calcValues.clear();
+		*outputTxt << calcAnswer;
+		break;
+	}
+	// Negate
+	case negative:
+	{
+
+		break;
+	}
+	default:
+		break;
+	}
+}
+
+
+
+

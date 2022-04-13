@@ -1,14 +1,16 @@
 #pragma once
 #include "wx\wx.h"
+#include <vector>
 class cMain : public wxFrame
 {
 public:
 	cMain();
 	~cMain();
 public:
-	int gridWidth = 10;
-	int gridHeight = 10;
-
+	std::vector<double> calcValues;
+	
+	double calcAnswer = 0;
+	int operatorID = -1;
 #pragma region Initialize Buttons Members
 	// create calc button members
 	wxTextCtrl* outputTxt = nullptr;
@@ -34,9 +36,9 @@ public:
 	wxButton* negativeBtn = nullptr;
 #pragma endregion
 
-
 	void OnButtonClicked(wxCommandEvent& evt);
-
+	void GetInputValue();
+	void CalculateEquation();
 	wxDECLARE_EVENT_TABLE();
 
 };
