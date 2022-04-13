@@ -199,16 +199,24 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Binary
 	case binary:
 	{
+		GetInputValue();
+		*outputTxt << " BINARY ";
 		break;
 	}
 	// Hex
 	case hex:
 	{
+		GetInputValue();
+		*outputTxt << " HEXADECIMAL ";
+
 		break;
 	}
 	// Decimal
 	case decimal:
 	{
+		GetInputValue();
+		*outputTxt << " DECMAL ";
+
 		break;
 	}
 #pragma endregion
@@ -219,7 +227,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 		operatorID = divide;
 		GetInputValue();
-
+		*outputTxt << " / ";
 		break;
 	}
 	// Mult
@@ -227,7 +235,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 		operatorID = mult;
 		GetInputValue();
-
+		*outputTxt << " * ";
 		break;
 	}
 	// Sub
@@ -235,6 +243,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 		operatorID = subtract;
 		GetInputValue();
+		*outputTxt << " - ";
 
 		break;
 	}
@@ -243,13 +252,15 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 		operatorID = add;
 		GetInputValue();
-
+		*outputTxt << " + ";
 		break;
 	}
 	// Equals
 	case equals:
 	{
 		GetInputValue();
+		// Uncomment when doing actual functionality of calculator
+		*outputTxt << " = ";
 		CalculateEquation();
 		break;
 	}
@@ -257,8 +268,9 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	case mod:
 	{
 		operatorID = mod;
-		GetInputValue();
 
+		GetInputValue();
+		*outputTxt << " MOD ";
 		break;
 	}
 	// Negate
@@ -266,7 +278,9 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 		operatorID = negative;
 		GetInputValue();
-		CalculateEquation();
+		// Uncomment when doing actual functionality of calculator
+		//CalculateEquation();
+		*outputTxt << " NEGATE ";
 		break;
 	}
 	// clear
@@ -300,7 +314,7 @@ void cMain::GetInputValue()
 	double fValue = 0;
 	txtValue.ToDouble(&fValue);
 	calcValues.push_back(fValue);
-	outputTxt->Clear();
+	
 
 }
 
@@ -319,7 +333,7 @@ void cMain::CalculateEquation()
 		calcAnswer = calcValues[0] / calcValues[1];
 		calcValues.clear();
 		*outputTxt << calcAnswer;
-		//calcValues.push_back(calcAnswer);
+		
 		break;
 	}
 	// Mult
@@ -343,13 +357,14 @@ void cMain::CalculateEquation()
 	// add
 	case add:
 	{
-		calcAnswer = calcValues[0] + calcValues[1];
-		/*for (int i = 0; i < calcValues.size(); i++)
+		
+		for (int i = 0; i < calcValues.size(); i++)
 		{
 			calcAnswer += calcValues[i];
-		}*/
+		}
 		calcValues.clear();
 		*outputTxt << calcAnswer;
+		calcAnswer = 0;
 		break;
 	}
 	// Mod
