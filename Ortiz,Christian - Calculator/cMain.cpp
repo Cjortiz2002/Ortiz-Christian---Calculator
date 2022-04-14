@@ -12,6 +12,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 	outputTxt = new wxTextCtrl(this, 101, "", wxPoint(0, 0), wxSize(375, 275), wxTE_RIGHT);
 	clearBtn = new wxButton(this, 20, "CLR", wxPoint(375, 0), wxSize(125, 275));
 	wxFont font(30, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
+	wxFont txtFont(25, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
 
 #pragma region Newing Buttons
 	// Newing Buttons
@@ -120,7 +121,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 
 #pragma region Setting Output Text Color/Font
 	// Output Text Box Font
-	outputTxt->SetFont(font);
+	outputTxt->SetFont(txtFont);
 
 	// Output Text box color
 	outputTxt->SetBackgroundColour(wxColour(*wxBLACK));
@@ -134,6 +135,7 @@ cMain::~cMain()
 
 }
 
+#pragma region On Button Clicked
 void cMain::OnButtonClicked(wxCommandEvent& evt)
 {
 
@@ -259,8 +261,8 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	case equals:
 	{
 		GetInputValue();
-		// Uncomment when doing actual functionality of calculator
 		*outputTxt << " = ";
+		// Uncomment when doing actual functionality of calculator
 		CalculateEquation();
 		break;
 	}
@@ -307,17 +309,22 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 
 	evt.Skip();
 }
+#pragma endregion
 
+
+#pragma region Get Input Value
 void cMain::GetInputValue()
 {
 	wxString txtValue = outputTxt->GetValue();
 	double fValue = 0;
 	txtValue.ToDouble(&fValue);
 	calcValues.push_back(fValue);
-	
 
 }
+#pragma endregion
 
+
+#pragma region Calculate Equation 
 void cMain::CalculateEquation()
 {
 	if (calcValues.size() < 2)
@@ -333,7 +340,7 @@ void cMain::CalculateEquation()
 		calcAnswer = calcValues[0] / calcValues[1];
 		calcValues.clear();
 		*outputTxt << calcAnswer;
-		
+
 		break;
 	}
 	// Mult
@@ -357,7 +364,7 @@ void cMain::CalculateEquation()
 	// add
 	case add:
 	{
-		
+
 		for (int i = 0; i < calcValues.size(); i++)
 		{
 			calcAnswer += calcValues[i];
@@ -388,6 +395,8 @@ void cMain::CalculateEquation()
 		break;
 	}
 }
+#pragma endregion
+
 
 
 
