@@ -10,7 +10,7 @@ public:
 	std::vector<double> calcValues;
 	
 	double calcAnswer = 0;
-	int operatorID = -1;
+	std::vector<int> operatorIDs;
 #pragma region Initialize Buttons Members
 	// create calc button members
 	wxTextCtrl* outputTxt = nullptr;

@@ -227,7 +227,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Divide
 	case divide:
 	{
-		operatorID = divide;
+		operatorIDs.push_back(divide);
 		GetInputValue();
 		*outputTxt << " / ";
 		break;
@@ -235,7 +235,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Mult
 	case mult:
 	{
-		operatorID = mult;
+		operatorIDs.push_back(mult);
 		GetInputValue();
 		*outputTxt << " * ";
 		break;
@@ -243,7 +243,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Sub
 	case subtract:
 	{
-		operatorID = subtract;
+		operatorIDs.push_back(subtract);
 		GetInputValue();
 		*outputTxt << " - ";
 
@@ -252,7 +252,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// add
 	case add:
 	{
-		operatorID = add;
+		operatorIDs.push_back(add);
 		GetInputValue();
 		*outputTxt << " + ";
 		break;
@@ -269,7 +269,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Mod
 	case mod:
 	{
-		operatorID = mod;
+		operatorIDs.push_back(mod);
 
 		GetInputValue();
 		*outputTxt << " MOD ";
@@ -278,7 +278,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Negate
 	case negative:
 	{
-		operatorID = negative;
+		operatorIDs.push_back(negative);
 		GetInputValue();
 		// Uncomment when doing actual functionality of calculator
 		//CalculateEquation();
@@ -332,13 +332,15 @@ void cMain::CalculateEquation()
 		*outputTxt << calcAnswer;
 		return;
 	}
-	switch (operatorID)
+
+	switch (operatorIDs[0])
 	{
 		// Divide
 	case divide:
 	{
 		calcAnswer = calcValues[0] / calcValues[1];
 		calcValues.clear();
+
 		*outputTxt << calcAnswer;
 
 		break;
@@ -349,6 +351,7 @@ void cMain::CalculateEquation()
 
 		calcAnswer = calcValues[0] * calcValues[1];
 		calcValues.clear();
+
 		*outputTxt << calcAnswer;
 		break;
 	}
@@ -371,6 +374,7 @@ void cMain::CalculateEquation()
 		}
 		calcValues.clear();
 		*outputTxt << calcAnswer;
+
 		calcAnswer = 0;
 		break;
 	}
@@ -380,6 +384,7 @@ void cMain::CalculateEquation()
 
 		calcAnswer = fmod(calcValues[0], calcValues[1]);
 		calcValues.clear();
+
 		*outputTxt << calcAnswer;
 		break;
 	}
@@ -388,12 +393,14 @@ void cMain::CalculateEquation()
 	{
 		calcAnswer = calcValues[0] * -1;
 		calcValues.clear();
+
 		*outputTxt << calcAnswer;
 		break;
 	}
 	default:
 		break;
 	}
+
 }
 #pragma endregion
 
