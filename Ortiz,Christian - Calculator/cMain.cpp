@@ -1,4 +1,6 @@
 #include "cMain.h"
+#include "ButtonFactory.h"
+
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
 EVT_BUTTON(wxID_ANY, OnButtonClicked)
 wxEND_EVENT_TABLE()
@@ -8,58 +10,58 @@ enum IDS
 };
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), wxSize(517, 815))
 {
-
 	outputTxt = new wxTextCtrl(this, 101, "", wxPoint(0, 0), wxSize(375, 275), wxTE_RIGHT);
-	clearBtn = new wxButton(this, 20, "CLR", wxPoint(375, 0), wxSize(125, 275));
 	wxFont font(30, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
 	wxFont txtFont(25, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
 
-#pragma region Newing Buttons
+#pragma region Creating Buttons
+	ButtonFactory factory = ButtonFactory(this);
 	// Newing Buttons
+	clearBtn = factory.CreateClearButton();
 	// Row 1
-	binaryBtn = new wxButton(this, 10, "BIN", wxPoint(0, 275), wxSize(125, 100));
-	hexBtn = new wxButton(this, 11, "HEX", wxPoint(125, 275), wxSize(125, 100));
-	decimalBtn = new wxButton(this, 12, "DEC", wxPoint(250, 275), wxSize(125, 100));
-	divideBtn = new wxButton(this, 13, "/", wxPoint(375, 275), wxSize(125, 100));
+	binaryBtn = factory.CreateBinaryButton();
+	hexBtn = factory.CreateHexButton();
+	decimalBtn = factory.CreateDecimalButton();
+	divideBtn = factory.CreateDivideButton();
 
-	// Row 2
-	sevenBtn = new wxButton(this, 7, "7", wxPoint(0, 375), wxSize(125, 100));
-	eightBtn = new wxButton(this, 8, "8", wxPoint(125, 375), wxSize(125, 100));
-	nineBtn = new wxButton(this, 9, "9", wxPoint(250, 375), wxSize(125, 100));
-	multBtn = new wxButton(this, 14, "*", wxPoint(375, 375), wxSize(125, 100));
+	// Row 2		
+	sevenBtn = factory.CreateSevenButton();
+	eightBtn = factory.CreateEightButton();
+	nineBtn = factory.CreateNineButton();
+	multBtn = factory.CreateMultButton();
 
-	// Row 3
-	fourBtn = new wxButton(this, 4, "4", wxPoint(0, 475), wxSize(125, 100));
-	fiveBtn = new wxButton(this, 5, "5", wxPoint(125, 475), wxSize(125, 100));
-	sixBtn = new wxButton(this, 6, "6", wxPoint(250, 475), wxSize(125, 100));
-	subtractBtn = new wxButton(this, 15, "-", wxPoint(375, 475), wxSize(125, 100));
+	// Row 3		
+	fourBtn = factory.CreateFourButton();
+	fiveBtn = factory.CreateFiveButton();
+	sixBtn = factory.CreateSixButton();
+	subtractBtn = factory.CreateSubtractButton();
 
-	// Row 4
-	oneBtn = new wxButton(this, 1, "1", wxPoint(0, 575), wxSize(125, 100));
-	twoBtn = new wxButton(this, 2, "2", wxPoint(125, 575), wxSize(125, 100));
-	threeBtn = new wxButton(this, 3, "3", wxPoint(250, 575), wxSize(125, 100));
-	addBtn = new wxButton(this, 16, "+", wxPoint(375, 575), wxSize(125, 100));
+	// Row 4		
+	oneBtn = factory.CreateOneButton();
+	twoBtn = factory.CreateTwoButton();
+	threeBtn = factory.CreateThreeButton();
+	addBtn = factory.CreateAddButton();
 
-	// Row 5
-	negativeBtn = new wxButton(this, 19, "(-)", wxPoint(0, 675), wxSize(125, 100));
-	zeroBtn = new wxButton(this, 0, "0", wxPoint(125, 675), wxSize(125, 100));
-	modBtn = new wxButton(this, 18, "%", wxPoint(250, 675), wxSize(125, 100));
-	equalsBtn = new wxButton(this, 17, "=", wxPoint(375, 675), wxSize(125, 100));
+	// Row 5		
+	negativeBtn = factory.CreateNegativeButton();
+	zeroBtn = factory.CreateZeroButton();
+	modBtn = factory.CreateModButton();
+	equalsBtn = factory.CreateEqualsButton();
 #pragma endregion
 
 #pragma region Setting Buttons Colors/Fonts
 	// setting buttons colors
-	clearBtn->SetBackgroundColour(wxColour(33, 203, 169));
-	zeroBtn->SetBackgroundColour(wxColour(133, 19, 157));
-	oneBtn->SetBackgroundColour(wxColour(133, 19, 157));
-	twoBtn->SetBackgroundColour(wxColour(133, 19, 157));
-	threeBtn->SetBackgroundColour(wxColour(133, 19, 157));
-	fourBtn->SetBackgroundColour(wxColour(133, 19, 157));
-	fiveBtn->SetBackgroundColour(wxColour(133, 19, 157));
-	sixBtn->SetBackgroundColour(wxColour(133, 19, 157));
-	sevenBtn->SetBackgroundColour(wxColour(133, 19, 157));
-	eightBtn->SetBackgroundColour(wxColour(133, 19, 157));
-	nineBtn->SetBackgroundColour(wxColour(133, 19, 157));
+	clearBtn->SetBackgroundColour(wxColour(19, 0, 105));
+	zeroBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	oneBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	twoBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	threeBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	fourBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	fiveBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	sixBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	sevenBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	eightBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	nineBtn->SetBackgroundColour(wxColour(38, 8, 64));
 	binaryBtn->SetBackgroundColour(wxColour(128, 0, 64));
 	hexBtn->SetBackgroundColour(wxColour(128, 0, 64));
 	decimalBtn->SetBackgroundColour(wxColour(128, 0, 64));
@@ -69,7 +71,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 	addBtn->SetBackgroundColour(wxColour(0, 128, 128));
 	modBtn->SetBackgroundColour(wxColour(128, 0, 64));
 	negativeBtn->SetBackgroundColour(wxColour(128, 0, 64));
-	equalsBtn->SetBackgroundColour(wxColour(239, 62, 91));
+	equalsBtn->SetBackgroundColour(wxColour(113, 100, 232));
 
 	// Setting button fonts
 	clearBtn->SetFont(font);
