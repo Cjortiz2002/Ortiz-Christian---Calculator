@@ -290,6 +290,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 		outputTxt->Clear();
 		calcValues.clear();
+		operatorIDs.clear();
 		calcAnswer = 0;
 		break;
 	}
@@ -327,8 +328,13 @@ void cMain::GetInputValue()
 #pragma region Calculate Equation 
 void cMain::CalculateEquation()
 {
-	if (calcValues.size() < 2)
+	if (calcValues.size() == 0)
 	{
+		return;
+	}
+	else if (calcValues.size() < 2 && calcValues.size() != 0)
+	{
+		calcAnswer = calcValues[0]; 
 		*outputTxt << calcAnswer;
 		return;
 	}
@@ -340,7 +346,11 @@ void cMain::CalculateEquation()
 	{
 		calcAnswer = calcValues[0] / calcValues[1];
 		calcValues.clear();
-
+		if (calcAnswer == (int)calcAnswer)
+		{
+			*outputTxt << (int)calcAnswer;
+			break;
+		}
 		*outputTxt << calcAnswer;
 
 		break;
@@ -351,7 +361,11 @@ void cMain::CalculateEquation()
 
 		calcAnswer = calcValues[0] * calcValues[1];
 		calcValues.clear();
-
+		if (calcAnswer == (int)calcAnswer)
+		{
+			*outputTxt << (int)calcAnswer;
+			break;
+		}
 		*outputTxt << calcAnswer;
 		break;
 	}
@@ -361,6 +375,11 @@ void cMain::CalculateEquation()
 
 		calcAnswer = calcValues[0] - calcValues[1];
 		calcValues.clear();
+		if (calcAnswer == (int)calcAnswer)
+		{
+			*outputTxt << (int)calcAnswer;
+			break;
+		}
 		*outputTxt << calcAnswer;
 		break;
 	}
@@ -373,8 +392,12 @@ void cMain::CalculateEquation()
 			calcAnswer += calcValues[i];
 		}
 		calcValues.clear();
+		if (calcAnswer == (int)calcAnswer)
+		{
+			*outputTxt << (int)calcAnswer;
+			break;
+		}
 		*outputTxt << calcAnswer;
-
 		calcAnswer = 0;
 		break;
 	}
@@ -384,7 +407,11 @@ void cMain::CalculateEquation()
 
 		calcAnswer = fmod(calcValues[0], calcValues[1]);
 		calcValues.clear();
-
+		if (calcAnswer == (int)calcAnswer)
+		{
+			*outputTxt << (int)calcAnswer;
+			break;
+		}
 		*outputTxt << calcAnswer;
 		break;
 	}
