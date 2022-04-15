@@ -132,7 +132,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 
 cMain::~cMain()
 {
-
+	delete[] operatorIDs;
 }
 
 #pragma region On Button Clicked
@@ -227,7 +227,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Divide
 	case divide:
 	{
-		operatorIDs.push_back(divide);
+		operatorIDs->push_back(divide);
 		GetInputValue();
 		*outputTxt << " / ";
 		break;
@@ -235,7 +235,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Mult
 	case mult:
 	{
-		operatorIDs.push_back(mult);
+		operatorIDs->push_back(mult);
 		GetInputValue();
 		*outputTxt << " * ";
 		break;
@@ -243,7 +243,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Sub
 	case subtract:
 	{
-		operatorIDs.push_back(subtract);
+		operatorIDs->push_back(subtract);
 		GetInputValue();
 		*outputTxt << " - ";
 
@@ -252,7 +252,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// add
 	case add:
 	{
-		operatorIDs.push_back(add);
+		operatorIDs->push_back(add);
 		GetInputValue();
 		*outputTxt << " + ";
 		break;
@@ -269,7 +269,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Mod
 	case mod:
 	{
-		operatorIDs.push_back(mod);
+		operatorIDs->push_back(mod);
 
 		GetInputValue();
 		*outputTxt << " MOD ";
@@ -278,7 +278,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Negate
 	case negative:
 	{
-		operatorIDs.push_back(negative);
+		operatorIDs->push_back(negative);
 		GetInputValue();
 		// Uncomment when doing actual functionality of calculator
 		//CalculateEquation();
@@ -290,7 +290,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 		outputTxt->Clear();
 		calcValues.clear();
-		operatorIDs.clear();
+		operatorIDs->clear();
 		calcAnswer = 0;
 		break;
 	}
@@ -334,100 +334,70 @@ void cMain::CalculateEquation()
 	}
 	else if (calcValues.size() < 2 && calcValues.size() != 0)
 	{
-		calcAnswer = calcValues[0]; 
+		calcAnswer = calcValues[0];
 		*outputTxt << calcAnswer;
 		return;
 	}
 
-	switch (operatorIDs[0])
+	for (int i = 0; i < operatorIDs->size(); i++)
 	{
-		// Divide
-	case divide:
-	{
-		calcAnswer = calcValues[0] / calcValues[1];
-		calcValues.clear();
-		if (calcAnswer == (int)calcAnswer)
+		switch (operatorIDs->at(i))
 		{
-			*outputTxt << (int)calcAnswer;
+			// Divide
+		case divide:
+		{
+			calcAnswer = calcValues[0] / calcValues[1];
+
 			break;
 		}
-		*outputTxt << calcAnswer;
-
-		break;
-	}
-	// Mult
-	case mult:
-	{
-
-		calcAnswer = calcValues[0] * calcValues[1];
-		calcValues.clear();
-		if (calcAnswer == (int)calcAnswer)
+		// Mult
+		case mult:
 		{
-			*outputTxt << (int)calcAnswer;
+			calcValues[i + 1] *= calcValues[i];
 			break;
 		}
-		*outputTxt << calcAnswer;
-		break;
-	}
-	// Sub
-	case subtract:
-	{
-
-		calcAnswer = calcValues[0] - calcValues[1];
-		calcValues.clear();
-		if (calcAnswer == (int)calcAnswer)
+		// Sub
+		case subtract:
 		{
-			*outputTxt << (int)calcAnswer;
+			calcValues[i + 1] -= calcValues[i];
+
 			break;
 		}
-		*outputTxt << calcAnswer;
-		break;
-	}
-	// add
-	case add:
-	{
+		// add
+		case add:
+		{
+			calcValues[i + 1] += calcValues[i];
 
-		for (int i = 0; i < calcValues.size(); i++)
-		{
-			calcAnswer += calcValues[i];
-		}
-		calcValues.clear();
-		if (calcAnswer == (int)calcAnswer)
-		{
-			*outputTxt << (int)calcAnswer;
 			break;
 		}
-		*outputTxt << calcAnswer;
-		calcAnswer = 0;
-		break;
-	}
-	// Mod
-	case mod:
-	{
-
-		calcAnswer = fmod(calcValues[0], calcValues[1]);
-		calcValues.clear();
-		if (calcAnswer == (int)calcAnswer)
+		// Mod
+		case mod:
 		{
-			*outputTxt << (int)calcAnswer;
+			calcAnswer = fmod(calcValues[0], calcValues[1]);
+
 			break;
 		}
-		*outputTxt << calcAnswer;
-		break;
+		// Negate
+		case negative:
+		{
+			calcAnswer = calcValues[0] * -1;
+
+			break;
+		}
+		default:
+			break;
+		}
 	}
-	// Negate
-	case negative:
+	calcAnswer = calcValues[calcValues.size() - 1];
+	if (calcAnswer == (int)calcAnswer)
 	{
-		calcAnswer = calcValues[0] * -1;
-		calcValues.clear();
+		*outputTxt << (int)calcAnswer;
+	}
+	else
+	{
 
 		*outputTxt << calcAnswer;
-		break;
 	}
-	default:
-		break;
-	}
-
 }
 #pragma endregion
 
