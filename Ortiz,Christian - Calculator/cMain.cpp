@@ -11,7 +11,6 @@ enum IDS
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), wxSize(517, 815))
 {
 	outputTxt = new wxTextCtrl(this, 101, "", wxPoint(0, 0), wxSize(375, 275), wxTE_RIGHT);
-	wxFont font(30, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
 	wxFont txtFont(25, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
 
 #pragma region Creating Buttons
@@ -49,77 +48,8 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator Lab", wxPoint(30, 30), w
 	equalsBtn = factory.CreateEqualsButton();
 #pragma endregion
 
-#pragma region Setting Buttons Colors/Fonts
-	// setting buttons colors
-	clearBtn->SetBackgroundColour(wxColour(19, 0, 105));
-	zeroBtn->SetBackgroundColour(wxColour(38, 8, 64));
-	oneBtn->SetBackgroundColour(wxColour(38, 8, 64));
-	twoBtn->SetBackgroundColour(wxColour(38, 8, 64));
-	threeBtn->SetBackgroundColour(wxColour(38, 8, 64));
-	fourBtn->SetBackgroundColour(wxColour(38, 8, 64));
-	fiveBtn->SetBackgroundColour(wxColour(38, 8, 64));
-	sixBtn->SetBackgroundColour(wxColour(38, 8, 64));
-	sevenBtn->SetBackgroundColour(wxColour(38, 8, 64));
-	eightBtn->SetBackgroundColour(wxColour(38, 8, 64));
-	nineBtn->SetBackgroundColour(wxColour(38, 8, 64));
-	binaryBtn->SetBackgroundColour(wxColour(128, 0, 64));
-	hexBtn->SetBackgroundColour(wxColour(128, 0, 64));
-	decimalBtn->SetBackgroundColour(wxColour(128, 0, 64));
-	divideBtn->SetBackgroundColour(wxColour(0, 128, 128));
-	multBtn->SetBackgroundColour(wxColour(0, 128, 128));
-	subtractBtn->SetBackgroundColour(wxColour(0, 128, 128));
-	addBtn->SetBackgroundColour(wxColour(0, 128, 128));
-	modBtn->SetBackgroundColour(wxColour(128, 0, 64));
-	negativeBtn->SetBackgroundColour(wxColour(128, 0, 64));
-	equalsBtn->SetBackgroundColour(wxColour(113, 100, 232));
-
-	// Setting button fonts
-	clearBtn->SetFont(font);
-	zeroBtn->SetFont(font);
-	oneBtn->SetFont(font);
-	twoBtn->SetFont(font);
-	threeBtn->SetFont(font);
-	fourBtn->SetFont(font);
-	fiveBtn->SetFont(font);
-	sixBtn->SetFont(font);
-	sevenBtn->SetFont(font);
-	eightBtn->SetFont(font);
-	nineBtn->SetFont(font);
-	binaryBtn->SetFont(font);
-	hexBtn->SetFont(font);
-	decimalBtn->SetFont(font);
-	divideBtn->SetFont(font);
-	multBtn->SetFont(font);
-	subtractBtn->SetFont(font);
-	addBtn->SetFont(font);
-	equalsBtn->SetFont(font);
-	modBtn->SetFont(font);
-	negativeBtn->SetFont(font);
-
-	// Setting Buttons Foreground Color
-	clearBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	zeroBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	oneBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	twoBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	threeBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	fourBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	fiveBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	sixBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	sevenBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	eightBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	nineBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	binaryBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	hexBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	decimalBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	divideBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	multBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	subtractBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	addBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	equalsBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	modBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-	negativeBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
-
-#pragma endregion
+	// Calls method that sets all of buttons colors and fonts
+	SetButtonsFormat();
 
 #pragma region Setting Output Text Color/Font
 	// Output Text Box Font
@@ -400,6 +330,86 @@ void cMain::CalculateEquation()
 
 		*outputTxt << calcAnswer;
 	}
+
+}
+
+
+#pragma endregion
+
+
+#pragma region Setting Buttons Colors/Fonts
+void cMain::SetButtonsFormat()
+{
+	wxFont font(30, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
+	// setting buttons colors
+	clearBtn->SetBackgroundColour(wxColour(19, 0, 105));
+	zeroBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	oneBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	twoBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	threeBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	fourBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	fiveBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	sixBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	sevenBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	eightBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	nineBtn->SetBackgroundColour(wxColour(38, 8, 64));
+	binaryBtn->SetBackgroundColour(wxColour(128, 0, 64));
+	hexBtn->SetBackgroundColour(wxColour(128, 0, 64));
+	decimalBtn->SetBackgroundColour(wxColour(128, 0, 64));
+	divideBtn->SetBackgroundColour(wxColour(0, 128, 128));
+	multBtn->SetBackgroundColour(wxColour(0, 128, 128));
+	subtractBtn->SetBackgroundColour(wxColour(0, 128, 128));
+	addBtn->SetBackgroundColour(wxColour(0, 128, 128));
+	modBtn->SetBackgroundColour(wxColour(128, 0, 64));
+	negativeBtn->SetBackgroundColour(wxColour(128, 0, 64));
+	equalsBtn->SetBackgroundColour(wxColour(113, 100, 232));
+
+	// Setting button fonts
+	clearBtn->SetFont(font);
+	zeroBtn->SetFont(font);
+	oneBtn->SetFont(font);
+	twoBtn->SetFont(font);
+	threeBtn->SetFont(font);
+	fourBtn->SetFont(font);
+	fiveBtn->SetFont(font);
+	sixBtn->SetFont(font);
+	sevenBtn->SetFont(font);
+	eightBtn->SetFont(font);
+	nineBtn->SetFont(font);
+	binaryBtn->SetFont(font);
+	hexBtn->SetFont(font);
+	decimalBtn->SetFont(font);
+	divideBtn->SetFont(font);
+	multBtn->SetFont(font);
+	subtractBtn->SetFont(font);
+	addBtn->SetFont(font);
+	equalsBtn->SetFont(font);
+	modBtn->SetFont(font);
+	negativeBtn->SetFont(font);
+
+	// Setting Buttons Foreground Color
+	clearBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	zeroBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	oneBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	twoBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	threeBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	fourBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	fiveBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	sixBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	sevenBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	eightBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	nineBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	binaryBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	hexBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	decimalBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	divideBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	multBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	subtractBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	addBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	equalsBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	modBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+	negativeBtn->SetOwnForegroundColour(wxColour(*wxWHITE));
+
 }
 #pragma endregion
 

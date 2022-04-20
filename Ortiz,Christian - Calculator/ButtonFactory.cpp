@@ -15,22 +15,22 @@ ButtonFactory::~ButtonFactory()
 #pragma region 0 - 9 buttons
 wxButton* ButtonFactory::CreateZeroButton()
 {
-    return new wxButton(mainAddress, 0, "0", wxPoint(125, 675), wxSize(125, 100));;
+    return new wxButton(mainAddress, 0, "0", wxPoint(125, 675), wxSize(125, 100));
 }
 
 wxButton* ButtonFactory::CreateOneButton()
 {
-    return new wxButton(mainAddress, 1, "1", wxPoint(0, 575), wxSize(125, 100));;
+    return new wxButton(mainAddress, 1, "1", wxPoint(0, 575), wxSize(125, 100));
 }
 
 wxButton* ButtonFactory::CreateTwoButton()
 {
-    return new wxButton(mainAddress, 2, "2", wxPoint(125, 575), wxSize(125, 100));;
+    return new wxButton(mainAddress, 2, "2", wxPoint(125, 575), wxSize(125, 100));
 }
 
 wxButton* ButtonFactory::CreateThreeButton()
 {
-    return new wxButton(mainAddress, 3, "3", wxPoint(250, 575), wxSize(125, 100));;
+    return new wxButton(mainAddress, 3, "3", wxPoint(250, 575), wxSize(125, 100));
 }
 
 wxButton* ButtonFactory::CreateFourButton()
@@ -102,22 +102,22 @@ wxButton* ButtonFactory::CreateSubtractButton()
 
 wxButton* ButtonFactory::CreateAddButton()
 {
-    return new wxButton(mainAddress, 16, "+", wxPoint(375, 575), wxSize(125, 100));;
+    return new wxButton(mainAddress, 16, "+", wxPoint(375, 575), wxSize(125, 100));
 }
 
 wxButton* ButtonFactory::CreateEqualsButton()
 {
-    return new wxButton(mainAddress, 17, "=", wxPoint(375, 675), wxSize(125, 100));;
+    return new wxButton(mainAddress, 17, "=", wxPoint(375, 675), wxSize(125, 100));
 }
 
 wxButton* ButtonFactory::CreateModButton()
 {
-    return new wxButton(mainAddress, 18, "%", wxPoint(250, 675), wxSize(125, 100));;
+    return new wxButton(mainAddress, 18, "%", wxPoint(250, 675), wxSize(125, 100));
 }
 
 wxButton* ButtonFactory::CreateNegativeButton()
 {
-    return new wxButton(mainAddress, 19, "(-)", wxPoint(0, 675), wxSize(125, 100));;
+    return new wxButton(mainAddress, 19, "(-)", wxPoint(0, 675), wxSize(125, 100));
 }
 #pragma endregion
 
