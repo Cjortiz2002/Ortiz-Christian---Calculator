@@ -5,9 +5,9 @@ enum IDS
 };
 
 
-#pragma region Calculate Equation (Currently Commented) 
+#pragma region Calculate Equation 
 
-double CalculatorProcessor::CalculateEquation(std::vector<double>* calcvalues, std::vector<int>* operatorIDs)
+double CalculatorProcessor::CalculateEquation(std::vector<double>* calcValues, std::vector<int>* operatorIDs)
 {
 	double calcAnswer = 0;
 	if (calcValues->size() < 2 && calcValues->size() != 0)
@@ -51,7 +51,7 @@ double CalculatorProcessor::CalculateEquation(std::vector<double>* calcvalues, s
 		// Mod
 		case mod:
 		{
-			calcAnswer = fmod(calcValues->at(i), calcValues->at(i + 1));
+			return fmod(calcValues->at(i), calcValues->at(i + 1));
 
 			break;
 		}
