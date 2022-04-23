@@ -273,7 +273,7 @@ void cMain::GetInputValue()
 #pragma endregion
 
 
-#pragma region Calculate Equation 
+#pragma region Calculate Equation (Out of date and commented)
 //void cMain::CalculateEquation()
 //{
 //	if (calcValues.size() == 0)
