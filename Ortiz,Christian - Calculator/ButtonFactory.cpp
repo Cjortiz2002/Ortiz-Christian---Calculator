@@ -1,4 +1,6 @@
 #include "ButtonFactory.h"
+#include "wx/wx.h"
+
 
 #pragma region Constructor/Destructor
 ButtonFactory::ButtonFactory(cMain* _Address)

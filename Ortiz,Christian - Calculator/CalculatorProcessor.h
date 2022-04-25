@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "IBaseCommand.h"
+#include <string>
 
 class CalculatorProcessor
 {
@@ -21,5 +22,7 @@ private:
 
 public:
 	double CalculateEquation(std::vector<double>* calcvalues, std::vector<int>* operatorIDs);
+	std::string ConvertToBinary(int _value);
+	std::string ConvertToHex(int _value);
 };
 

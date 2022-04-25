@@ -1,5 +1,6 @@
 #include "cMain.h"
 #include "ButtonFactory.h"
+
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
 EVT_BUTTON(wxID_ANY, OnButtonClicked)
 wxEND_EVENT_TABLE()
@@ -133,25 +134,36 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	// Binary
 	case binary:
 	{
-		GetInputValue();
+		wxString txtValue = outputTxt->GetValue();
 		outputTxt->Clear();
+		double fValue = 0;
+		txtValue.ToDouble(&fValue);
+		decimalConverted = fValue;
+		conversionOccured = true;
+		*outputTxt << processor->ConvertToBinary((int)fValue);
 		break;
 	}
 	// Hex
 	case hex:
 	{
-		GetInputValue();
+
+		wxString txtValue = outputTxt->GetValue();
 		outputTxt->Clear();
-
-
+		double fValue = 0;
+		txtValue.ToDouble(&fValue);
+		decimalConverted = fValue;
+		conversionOccured = true;
+		*outputTxt << processor->ConvertToHex((int)fValue);
 		break;
 	}
 	// Decimal
 	case decimal:
 	{
-		GetInputValue();
-		outputTxt->Clear();
-
+		if (conversionOccured)
+		{
+			outputTxt->Clear();
+			*outputTxt << decimalConverted;
+		}
 		break;
 	}
 #pragma endregion

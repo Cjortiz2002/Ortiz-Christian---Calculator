@@ -12,7 +12,8 @@ private:
 	std::vector<double>* calcValues = new std::vector<double>();
 	std::vector<int>* operatorIDs = new std::vector<int>();
 	CalculatorProcessor* processor = &CalculatorProcessor::GetInstance();;
-
+	int decimalConverted = 0;
+	bool conversionOccured = false;
 #pragma region Initialize Buttons Members
 	// create calc button members
 	wxTextCtrl* outputTxt = nullptr;

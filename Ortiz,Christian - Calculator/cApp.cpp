@@ -1,6 +1,6 @@
 #include "cApp.h"
 wxIMPLEMENT_APP(cApp);
-
+#define  _CRT_SECURE_NO_WARNINGS
 cApp::cApp()
 {
 

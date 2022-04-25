@@ -1,4 +1,5 @@
 #include "CalculatorProcessor.h"
+#include <sstream>
 enum IDS
 {
 	zero, one, two, three, four, five, six, seven, eight, nine, binary, hex, decimal, divide, mult, subtract, add, equals, mod, negative, clear
@@ -7,6 +8,33 @@ enum IDS
 CalculatorProcessor::~CalculatorProcessor()
 {
 	
+}
+
+std::string CalculatorProcessor::ConvertToBinary(int _value)
+{
+	std::string text = "";
+	
+	for (int i = 0; i < 16; i++)
+	{
+		if (_value % 2 == 0)
+		{
+			text = "0" + text;
+		}
+		else
+		{
+			text = "1" + text;
+
+		}
+		_value = _value / 2;
+	}
+	return text;
+}
+
+std::string CalculatorProcessor::ConvertToHex(int _value)
+{
+	std::stringstream sstream;
+	sstream << std::hex << _value;
+	return sstream.str();
 }
 
 #pragma region Calculate Equation 

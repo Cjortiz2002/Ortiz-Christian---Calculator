@@ -15,36 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cApp.h">
+    <ClInclude Include="ButtonFactoryTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cMain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ButtonFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CalculatorProcessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IBaseCommand.h">
+    <ClInclude Include="CalculatorProcessorTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cApp.cpp">
+    <ClCompile Include="ButtonFactoryTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cMain.cpp">
+    <ClCompile Include="..\Ortiz,Christian - Calculator\ButtonFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ButtonFactory.cpp">
+    <ClCompile Include="CalculatorProcessorTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IBaseCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CalculatorProcessor.cpp">
+    <ClCompile Include="..\Ortiz,Christian - Calculator\CalculatorProcessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
