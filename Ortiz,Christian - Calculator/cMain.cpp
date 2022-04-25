@@ -152,7 +152,6 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 		GetInputValue();
 		outputTxt->Clear();
 
-
 		break;
 	}
 #pragma endregion

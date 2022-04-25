@@ -28,7 +28,7 @@ double CalculatorProcessor::CalculateEquation(std::vector<double>* calcValues, s
 		case divide:
 		{
 			//calcValues->at(i + 1) = calcValues->at(i) / calcValues->at(i + 1);
-			IBaseCommand* divideCommand = new DivideCommand(calcValues->at(i), calcValues->at(i + 1));
+			IBaseCommand* divideCommand = new DivideCommand(&calcValues->at(i), &calcValues->at(i + 1));
 			commands.push_back(divideCommand);
 			break;
 		}
@@ -36,7 +36,7 @@ double CalculatorProcessor::CalculateEquation(std::vector<double>* calcValues, s
 		case mult:
 		{
 			//calcValues->at(i + 1) *= calcValues->at(i);
-			IBaseCommand* multCommand = new MultiplyCommand(calcValues->at(i), calcValues->at(i + 1));
+			IBaseCommand* multCommand = new MultiplyCommand(&calcValues->at(i), &calcValues->at(i + 1));
 			commands.push_back(multCommand);
 			break;
 		}
@@ -44,7 +44,7 @@ double CalculatorProcessor::CalculateEquation(std::vector<double>* calcValues, s
 		case subtract:
 		{
 			//calcValues->at(i + 1) = calcValues->at(i) - calcValues->at(i + 1);
-			IBaseCommand* subtractCommand = new SubtractCommand(calcValues->at(i), calcValues->at(i + 1));
+			IBaseCommand* subtractCommand = new SubtractCommand(&calcValues->at(i), &calcValues->at(i + 1));
 			commands.push_back(subtractCommand);
 			break;
 		}
@@ -52,7 +52,7 @@ double CalculatorProcessor::CalculateEquation(std::vector<double>* calcValues, s
 		case add:
 		{
 			//calcValues->at(i + 1) += calcValues->at(i);
-			IBaseCommand* addCommand = new AddCommand(calcValues->at(i), calcValues->at(i + 1));
+			IBaseCommand* addCommand = new AddCommand(&calcValues->at(i), &calcValues->at(i + 1));
 			commands.push_back(addCommand);
 			break;
 		}
@@ -68,12 +68,16 @@ double CalculatorProcessor::CalculateEquation(std::vector<double>* calcValues, s
 		}
 	}
 
-	//calcAnswer = calcValues->at(calcValues->size() - 1);
+	// calcAnswer = calcValues->at(calcValues->size() - 1);
 	// loop through commands
 	for (int i = 0; i < commands.size(); i++)
 	{
-		
+		commands[i]->Execute();
 	}
+	calcAnswer = calcValues->at(calcValues->size() - 1);
+	calcValues->clear();
+	operatorIDs->clear();
+	commands.clear();
 	return calcAnswer;
 }
 

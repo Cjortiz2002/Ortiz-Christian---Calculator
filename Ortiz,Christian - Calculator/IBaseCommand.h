@@ -4,53 +4,45 @@
 class IBaseCommand
 {
 public:
-	virtual double Execute() = 0;
+	virtual void Execute() = 0;
 };
 
 class AddCommand : public IBaseCommand
 {
 private:
-	double operand1;
-	double operand2;
+	double* operand1;
+	double* operand2;
 
 public:
-	AddCommand(double _operand1, double _operand2)
+	AddCommand(double* _operand1, double* _operand2)
 	{
 		operand1 = _operand1;
 		operand2 = _operand2;
 	}
 
-	void SetOperands(double _operand1, double _operand2)
+
+	void Execute()
 	{
-		operand1 = _operand1;
-		operand2 = _operand2;
-	}
-	double Execute()
-	{
-		return operand1 + operand2;
+		*operand2 = *operand1 + *operand2;
 	}
 };
 
 class SubtractCommand :public IBaseCommand
 {
 private:
-	double operand1;
-	double operand2;
+	double* operand1;
+	double* operand2;
 
 public:
-	SubtractCommand(double _operand1, double _operand2)
+	SubtractCommand(double* _operand1, double* _operand2)
 	{
 		operand1 = _operand1;
 		operand2 = _operand2;
 	}
-	void SetOperands(double _operand1, double _operand2)
+
+	void Execute()
 	{
-		operand1 = _operand1;
-		operand2 = _operand2;
-	}
-	double Execute()
-	{
-		return operand1 - operand2;
+		*operand2 = *operand1 - *operand2;
 
 	}
 };
@@ -58,23 +50,19 @@ public:
 class MultiplyCommand : public IBaseCommand
 {
 private:
-	double operand1;
-	double operand2;
+	double* operand1;
+	double* operand2;
 
 public:
-	MultiplyCommand(double _operand1, double _operand2)
+	MultiplyCommand(double* _operand1, double* _operand2)
 	{
 		operand1 = _operand1;
 		operand2 = _operand2;
 	}
-	void SetOperands(double _operand1, double _operand2)
+
+	void Execute()
 	{
-		operand1 = _operand1;
-		operand2 = _operand2;
-	}
-	double Execute()
-	{
-		return operand1 * operand2;
+		*operand2 = *operand1 * *operand2;
 
 	}
 };
@@ -82,23 +70,19 @@ public:
 class DivideCommand : public IBaseCommand
 {
 private:
-	double operand1;
-	double operand2;
+	double* operand1;
+	double* operand2;
 
 public:
-	DivideCommand(double _operand1, double _operand2)
+	DivideCommand(double* _operand1, double* _operand2)
 	{
 		operand1 = _operand1;
 		operand2 = _operand2;
 	}
-	void SetOperands(double _operand1, double _operand2)
+
+	void Execute()
 	{
-		operand1 = _operand1;
-		operand2 = _operand2;
-	}
-	double Execute()
-	{
-		return operand1 / operand2;
+		*operand2 = *operand1 / *operand2;
 
 	}
 };
