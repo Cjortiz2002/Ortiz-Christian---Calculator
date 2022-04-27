@@ -42,7 +42,6 @@ private:
 
 	void OnButtonClicked(wxCommandEvent& evt);
 	void GetInputValue();
-	void CalculateEquation();
 	void SetButtonsFormat();
 	wxDECLARE_EVENT_TABLE();
 
